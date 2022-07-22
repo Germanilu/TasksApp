@@ -8,8 +8,7 @@ const db = require('./config/database');
 
 //COnexion con rutas
 const taskRoutes = require('./routes/task.routes')
-
-
+const authRoutes = require('./routes/auth.routes'); 
 
 
 //conecto express a mi const app
@@ -27,7 +26,10 @@ app.use(express.json())
 
 //Puerto que utiliza el sv
 const port = process.env.PORT || 4000; 
+
+
 app.use('/api', taskRoutes)  
+app.use('/api', authRoutes)  
 
 //ruta de bienvenida
 app.get('/' , (req,res) => {   // Primera ruta creada 
