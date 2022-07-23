@@ -10,6 +10,7 @@ const db = require('./config/database');
 const groupRoutes = require('./routes/group.routes')
 const authRoutes = require('./routes/auth.routes'); 
 const userRoutes = require('./routes/user.routes')
+const taskRoutes = require('./routes/task.routes')
 
 
 //conecto express a mi const app
@@ -32,6 +33,7 @@ const port = process.env.PORT || 4000;
 app.use('/api', groupRoutes)  
 app.use('/api', authRoutes)  
 app.use('/api', userRoutes)  
+app.use('/api', taskRoutes)  
 
 //ruta de bienvenida
 app.get('/' , (req,res) => {   // Primera ruta creada 
