@@ -12,6 +12,8 @@ const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes')
 const taskRoutes = require('./routes/task.routes')
 
+//Requiero cors
+const cors = require('cors');
 
 //conecto express a mi const app
 const app = express(); 
@@ -21,10 +23,10 @@ const app = express();
 app.use(express.json())  
 
 
-// //Cors
-// let corsOptions = {    origin: "*",    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",    preflightContinue: false,     allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",    optionsSuccessStatus: 204};
-// //Uso Cors
-// app.use(cors(corsOptions));
+//Cors
+let corsOptions = {    origin: "*",    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",    preflightContinue: false,     allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",    optionsSuccessStatus: 204};
+//Uso Cors
+app.use(cors(corsOptions));
 
 //Puerto que utiliza el sv
 const port = process.env.PORT || 4000; 
