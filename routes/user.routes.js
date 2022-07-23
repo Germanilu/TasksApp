@@ -1,7 +1,7 @@
 // Requiero express para las rutas
 const router = require('express').Router()
 //Me llevo los controllers
-const userController = require('../controllers/UserController');
+const userController = require('../controllers/userController');
 
 
 //Requiero la funcion middleware de verifyToken
