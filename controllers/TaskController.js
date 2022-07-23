@@ -67,15 +67,75 @@ taskController.getAllTask = async(req,res) => {
 }
 
 
+taskController.update = async(req,res) => {
+    try {
+        //Requiero id task por url
+        const {id} = req.params;
+
+        const {title,description} = req.body
+
+        const updateTask = {
+            title,
+            description
+           
+        }
+
+        await Task.findOneAndUpdate({_id:id},updateTask)
+        return res.status(200).json(
+            {
+                success: true,
+                message: "User Update Succesfully",
+                data:updateTask
+            }
+        )
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "Unable to Update Data",
+                error: error?.message || error
+            }
+        )
+    }
+}
+
+taskController.isComplete = async(req,res) => {
+    try {
+        //Requiero id task por url
+        const {id} = req.params;
+
+        const {isCompleted} = req.body
+
+        const updateTask = {
+            isCompleted
+        }
+
+        await Task.findOneAndUpdate({_id:id},updateTask)
+        return res.status(200).json(
+            {
+                success: true,
+                message: "Task Completed!",
+            }
+        )
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "Unable to Update Data",
+                error: error?.message || error
+            }
+        )
+    }
+}
+
+
 
 taskController.deleteTask = async (req,res) => {
     try {
         //Requiero el id de la task por url
         const {id} = req.params
-            
+        //Borro la task
         const taskDeleted = await Task.findByIdAndDelete({_id:id});
-
-        console.log("soy taskdeleted",taskDeleted)
 
         if(taskDeleted == null){
             return res.status(500).json({

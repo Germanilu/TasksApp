@@ -54,6 +54,39 @@ groupController.getMyGroup = async(req,res) => {
 
 
 
+groupController.update = async(req,res) => {
+    try {
+        //Requiero id del Group por url
+        const {id} = req.params;
+
+        //Requiero el nuevo titulo
+        const {groupTitle} = req.body
+
+        const updateGroup = {
+            groupTitle
+        }
+
+        await Group.findOneAndUpdate({_id:id},updateGroup)
+        return res.status(200).json(
+            {
+                success: true,
+                message: "Group Update Succesfully",
+                data:updateGroup
+            }
+        )
+    } catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "Unable to Update Data",
+                error: error?.message || error
+            }
+        )
+    }
+}
+
+
+
 groupController.deleteGroup = async (req,res) => {
     try {
         const {id} = req.params

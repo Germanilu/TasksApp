@@ -6,6 +6,7 @@ const router = require('express').Router();
 
 router.post('/newGroup', verifyToken, groupController.create)
 router.get('/group',verifyToken,groupController.getMyGroup)
+router.put('/group/id=:id',verifyToken,groupController.update)
 router.delete('/group/id=:id', verifyToken,groupController.deleteGroup)
 
 
